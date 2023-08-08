@@ -29,57 +29,67 @@ async function renderData(event) {
     }
 
     // cambio de color de las barra segun tramo
-    const rgbaRedColor = "rgba(255, 99, 132, .2)";
-    const rgbRedColor = "rgba(255, 99, 132, 1)";
+    // const rgbaRedColor = "rgba(255, 99, 132, .2)";
+    // const rgbRedColor = "rgba(255, 99, 132, 1)";
 
-    const rgbaOrangeColor = "rgba(255, 159, 64, .2)";
-    const rgbOrangeColor = "rgba(255, 159, 64, 1)";
+    // const rgbaOrangeColor = "rgba(255, 159, 64, .2)";
+    // const rgbOrangeColor = "rgba(255, 159, 64, 1)";
 
-    const rgbaVioletColor = "rgba(153, 102, 255, .2)";
-    const rgbVioletColor = "rgba(153, 102, 255, 1)";
+    // const rgbaVioletColor = "rgba(153, 102, 255, .2)";
+    // const rgbVioletColor = "rgba(153, 102, 255, 1)";
 
 
-    const rgbaGreenColor = "rgba(54, 162, 235, 0.2)";
-    const rgbGreenColor = "rgba(54, 162, 235, 1)";
+    // const rgbaGreenColor = "rgba(54, 162, 235, 0.2)";
+    // const rgbGreenColor = "rgba(54, 162, 235, 1)";
 
     // aplicamos color a las barras de graficos
-    const backgroundColors = data.serie.map(indicador =>
-      indicador > 900 ? rgbaRedColor :
-      indicador > 800 ? rgbaGreenColor :
-      indicador > 780 ? rgbaVioletColor :
-      rgbaOrangeColor
-    );
+    // const backgroundColors = data.serie.map(indicador =>
+    //   indicador > 900 ? rgbaRedColor :
+    //   indicador > 800 ? rgbaGreenColor :
+    //   indicador > 780 ? rgbaVioletColor :
+    //   rgbaOrangeColor
+    // );
 
-    const borderColors =  data.serie.map(indicador => 
-      indicador > 900 ? rgbRedColor :
-      indicador > 800 ? rgbGreenColor :
-      indicador > 780 ? rgbVioletColor :
-      rgbOrangeColor
-    );
+    // const borderColors =  data.serie.map(indicador => 
+    //   indicador > 900 ? rgbRedColor :
+    //   indicador > 800 ? rgbGreenColor :
+    //   indicador > 780 ? rgbVioletColor :
+    //   rgbOrangeColor
+    // );
 
+    // Colores para ChartJS
+    Chart.defaults.color = 'rgba(255, 255, 235, 0.5)';
+    Chart.defaults.font.size = 12;
+    Chart.defaults.borderColor = 'rgba(255, 255, 235, 0.025)';
 
     // Configurar el gráfico
     const ctx = document.getElementById('myChart').getContext('2d');
     chart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: fechas,
         datasets: [{
-          label: 'Valor del Dólar',
+          //label: 'Valor del Dólar',
           data: valores,
           borderWidth: 1,
-          backgroundColor: backgroundColors,
-          borderColor: borderColors,
+          backgroundColor: 'rgba(255, 255, 235, 0.25)',
+          //borderColor: 'rgba(255, 255, 235, 0.0)',
           hoverBackgroundColor: 'rgba(54, 162, 235, 0.4)',
           hoverBorderColor: 'rgba(54, 162, 235, 1)',
         }]
       },
       options: {
+        plugins: {
+          legend: {
+            display: false // sacamos el label title
+          }
+        },
         scales: {
           y: {
             beginAtZero: true
           }
         }
+        
       },
     });
   } catch (error) {
@@ -114,7 +124,7 @@ function selectAnio(anio) {
       return "https://mindicador.cl/api/dolar/2023";
   }
 }
-// Función para formatear la fecha a "YYYY-MM" (año-mes)
+// Función para formatear la fecha a "YYYY-MM" (año-dia-mes)
 function formatDateToYearMonth(date) {
   return new Date(date).toISOString().slice(0, 10);
 }
