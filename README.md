@@ -1,5 +1,8 @@
 
+////////////////////  DIRECCIÓN GITHUB PAGE  ////////////////////////////////
+
 https://alexanderosses.github.io/TABLERO-DE-DATOS/
+
 
 ////////////////////  LIBRERIAS UTILIZADAS  ////////////////////////////////
 
@@ -24,6 +27,9 @@ https://coolors.co
 Figma: para la creacion del prototipo
 https://www.figma.com/
 
+Fuentes: googleFonts
+https://fonts.google.com/specimen/Kanit
+
 
 ////////////////////  TECNOLOGIAS APLICADAS  //////////////////////////////
 
@@ -31,4 +37,11 @@ HTML 5
 JavaScript
 CSS
 Bootstrap
+Chart JS
+GoogleFonts
+
+////////////////////  API  ////////////////////////////////////////////////
+
+La API REST seleccionada es la MINDICADOR.CL, entrega datos de los indicadores económicos de Chile
+https://mindicador.cl
 

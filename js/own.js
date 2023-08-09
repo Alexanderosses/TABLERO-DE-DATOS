@@ -10,7 +10,7 @@ async function renderData(event) {
     const anio = document.querySelector('#anio').value;
     const urlAnio = selectAnio(anio); // Obtener la URL correspondiente al año seleccionado
 
-    console.log("Rendering data for year:", anio, "URL:", urlAnio);
+   //console.log("Rendering data for year:", anio, "URL:", urlAnio);
 
     const data = await fetchApi(urlAnio); // Realizar la solicitud a la API
 
@@ -20,42 +20,13 @@ async function renderData(event) {
     // Convertir los valores a números enteros
     const valores = data.serie.map(indicador => parseInt(indicador.valor, 10));
 
-    // Convertir las fechas a objetos Date y formatearlas a "YYYY-MM" (año-mes)
-    const fechas = data.serie.map(indicador => formatDateToYearMonth(indicador.fecha));
+    // Convertir las fechas a objetos Date y formatearlas a "MM-DD" (mes-dia)
+    const diaMes = data.serie.map(indicador => formatDateToYearMonth(indicador.fecha));
 
-    // Si ya hay un gráfico, destrúyelo antes de crear uno nuevo
+    // Si existe un gráfico, lo destruimos antes de crear uno nuevo
     if (chart) {
       chart.destroy();
     }
-
-    // cambio de color de las barra segun tramo
-    // const rgbaRedColor = "rgba(255, 99, 132, .2)";
-    // const rgbRedColor = "rgba(255, 99, 132, 1)";
-
-    // const rgbaOrangeColor = "rgba(255, 159, 64, .2)";
-    // const rgbOrangeColor = "rgba(255, 159, 64, 1)";
-
-    // const rgbaVioletColor = "rgba(153, 102, 255, .2)";
-    // const rgbVioletColor = "rgba(153, 102, 255, 1)";
-
-
-    // const rgbaGreenColor = "rgba(54, 162, 235, 0.2)";
-    // const rgbGreenColor = "rgba(54, 162, 235, 1)";
-
-    // aplicamos color a las barras de graficos
-    // const backgroundColors = data.serie.map(indicador =>
-    //   indicador > 900 ? rgbaRedColor :
-    //   indicador > 800 ? rgbaGreenColor :
-    //   indicador > 780 ? rgbaVioletColor :
-    //   rgbaOrangeColor
-    // );
-
-    // const borderColors =  data.serie.map(indicador => 
-    //   indicador > 900 ? rgbRedColor :
-    //   indicador > 800 ? rgbGreenColor :
-    //   indicador > 780 ? rgbVioletColor :
-    //   rgbOrangeColor
-    // );
 
     // Colores para ChartJS
     Chart.defaults.color = 'rgba(255, 255, 235, 0.5)';
@@ -67,9 +38,9 @@ async function renderData(event) {
     chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: fechas,
+        labels: diaMes,
         datasets: [{
-          //label: 'Valor del Dólar',
+          //label: 'Valor del Dólar observado',
           data: valores,
           borderWidth: 1,
           backgroundColor: 'rgba(255, 255, 235, 0.25)',
@@ -78,18 +49,39 @@ async function renderData(event) {
           hoverBorderColor: 'rgba(54, 162, 235, 1)',
         }]
       },
+      
       options: {
         plugins: {
           legend: {
             display: false // sacamos el label title
-          }
+          },
+          tooltip: {
+            callbacks: {
+              beforeTitle: function(context){
+                return "Dólar observado";
+              },
+              title: function(context){
+                console.log(context[0].label);
+                return anio + "-" + context[0].label ;
+              },
+              label: function(context) {
+                let label = context.dataset.label || ' ';
+                  if (label) {
+                      label += 'Valor: ';
+                  }
+                  if (context.parsed.y !== null) {
+                      label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                  }
+                  return label;
+                }                
+              }
+            }
         },
         scales: {
           y: {
             beginAtZero: true
           }
-        }
-        
+        },     
       },
     });
   } catch (error) {
@@ -125,8 +117,8 @@ function selectAnio(anio) {
   }
 }
 // Función para formatear la fecha a "YYYY-MM" (año-dia-mes)
-function formatDateToYearMonth(date) {
-  return new Date(date).toISOString().slice(0, 10);
+function formatDateToYearMonth(diaMes) {
+  return new Date(diaMes).toISOString().slice(5, 10); // retornamos desde el indice 5 al 10 la fecha
 }
 
 // Agregar un event listener para el evento submit del formulario
