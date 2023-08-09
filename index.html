@@ -30,19 +30,26 @@
       rel="stylesheet" />
   </head>
   <body>
+    <header>
+      <nav class="navbar navbar-expand-md fixed-top raya-bottom">
+          <div class="container-fluid menu-header">
+              <div class="col-md-3 col-sm-12">
+                 <h1>Dólar histórico</h1>
+              </div>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="bi bi-list"></i>
+              </button>
+          </div>
+      </nav>
+  </header>
     <div class="container">
-
-      <header class="container-header">
+      <section class="container-header">
         <form onsubmit="renderData(event)" id="formulario" class="col-12">
           <div class="row g-0 justify-content-start">
             <h2 class="col-auto pe-4">Variación del Dólar por año</h2>
-          <div class="col-auto">
-            <select
-                class="form-select form-select-lg"
-                aria-label="selecciona"
-                id="anio"
-                name="anio"
-                required>
+            <div class="col-auto">
+            <select class="form-select form-select-lg" aria-label="selecciona" id="anio" name="anio" required>
                 <option value selected hidden>Selecciona un año</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -65,7 +72,7 @@
             </div>
           </div>
         </form>
-      </header>
+      </section>
 
       <!-- Chart JS-->
       <section class="col-12 box-content">

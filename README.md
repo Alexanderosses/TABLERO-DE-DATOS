@@ -1,3 +1,17 @@
+////////////////////////////// PROYECTO TABLERO DE DATOS - API REST MINDICADOR ///////////////////////////
+
+El proyecto consiste en crear una aplicación web que se conecta a la API REST de Minindicador.cl para obtener y visualizar valores históricos del dólar desde 2013 al 2023. 
+Se utilizarán tecnologías como JavaScript (JS), Import/Export, async/await, Fetch y la librería Chart JS.
+
+Primero, se importarán las funciones necesarias para realizar peticiones a la API y se configurará la llamada asincrónica para obtener los datos históricos del dólar. 
+Luego, se procesarán y estructurarán los datos obtenidos para su posterior representación gráfica.
+
+Utilizando la librería Chart JS, se creará un gráfico interactivo que mostrará la evolución del valor del dólar a lo largo del tiempo. 
+Los datos se presentarán de manera clara y legible, permitiendo al usuario explorar las fluctuaciones y tendencias. 
+La aplicación ofrecerá una experiencia amigable, permitiendo al usuario interactuar con el gráfico y obtener información detallada al pasar el cursor sobre los puntos.
+
+En resumen, este proyecto combina tecnologías como JS, Import/Export, async/await, Fetch y Chart JS para conectar con la API Minindicador.cl y crear una visualización gráfica de los valores históricos del dólar, proporcionando una herramienta informativa y útil para analizar su evolución en el período de 2013 a 2023.
+
 
 ////////////////////  DIRECCIÓN GITHUB PAGE  ////////////////////////////////
 
