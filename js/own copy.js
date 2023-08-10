@@ -8,7 +8,7 @@ async function renderData(event) {
   event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
   try {
     const anio = document.querySelector('#anio').value;
-    const urlAnio = selectAnio(anio); // Obtener la URL correspondiente al año seleccionado desde el formulario
+    const urlAnio = selectAnio(anio); // Obtener la URL correspondiente al año seleccionado
     const data = await fetchApi(urlAnio); // Realizar la solicitud a la API
 
     //const fechas = data.serie.map(indicador => indicador.fecha);
@@ -86,7 +86,7 @@ async function renderData(event) {
   }
 }
 
-// Función para seleccionar la URL de la API según el año en base a la variable anio desde el formulario
+// Función para seleccionar la URL de la API según el año
 function selectAnio(anio) {
   switch (anio) {
     case "2022":
@@ -120,17 +120,3 @@ function formatDateToYearMonth(diaMes) {
 
 // Agregar un event listener para el evento submit del formulario
 document.querySelector('#formulario').addEventListener('submit', renderData);
-
-
-// Funcion para cargar el año 2023 al ingresar por primera vez a la página
-// Agregar un event listener para que se ejecute al cargar la página
-window.addEventListener('load', () => {
-  const defaultAnio = "2023"; // Año por defecto al cargar la página
-  const anioSelect = document.querySelector('#anio');
-  
-  // Establecer el valor predeterminado en el selector de año
-  anioSelect.value = defaultAnio;
-  
-  // Llamar a la función de renderizado con el valor predeterminado
-  renderData(new Event('submit'));
-});
