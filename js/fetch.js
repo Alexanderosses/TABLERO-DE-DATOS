@@ -7,4 +7,3 @@ export const fetchApi = async (url) => {
         throw new Error('Error fetching data from API: ' + error.message);
     }
 }
-

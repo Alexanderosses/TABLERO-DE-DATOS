@@ -46,7 +46,6 @@ async function renderData(event) {
           hoverBorderColor: 'rgba(54, 162, 235, 1)',
         }]
       },
-      
       options: {
         plugins: {
           legend: {

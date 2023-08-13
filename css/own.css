@@ -6,7 +6,8 @@ html,body{
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(45deg,rgba(11, 00, 23, 0.9), rgba(00, 22, 48, 0.8)), url(../img/fondo.jpg) !important;
+    /*background-image: linear-gradient(45deg,rgba(11, 00, 23, 0.9), rgba(00, 22, 48, 0.8)), url(../img/fondo.jpg) !important;*/
+    background-image: linear-gradient(45deg,rgba(49, 0, 102, 0.9), rgba(0, 3, 19, 0.8)), url(../img/fondo.jpg) !important;
     background-repeat: repeat;
     background-position: center center;
     background-attachment: fixed;
